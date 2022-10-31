@@ -1,0 +1,126 @@
+<body>
+    <div class="new1">
+        <div class="centered head">Your bookings</div>
+        <div class="container-flights">
+            <!--
+            <div class="headers">
+                <table>
+                    <tr style="display: flex; margin-right: 10%;">
+                        <td style="text-align: left;padding-left: 2%;">Source-Destination</td>
+                        <td style="text-align: left;padding-left: 2%; margin-left: 8%;">Passenger Name</td>
+                        <td style="text-align: left;padding-left: 2%;"> Age</td>
+
+                    </tr>
+                </table>
+
+            </div>
+            -->
+            <!--conncetion to api here-->
+            <div class="row" *ngFor="let booking of bookingsView; let indexOfElement=index;">
+                <table>
+                    <tr>
+                        <table class="nestedtable">
+                            <tr>
+                                <td class="airlines">{{booking.source}} &nbsp;&nbsp;<div style="font-size:30px;">→</div>
+                                    &nbsp;&nbsp; {{booking.destination}}</td>
+                            </tr>
+                            <tr>
+                                <td class="flight-no">{{booking.dateTime}}</td>
+                            </tr>
+                        </table>
+                        <td class="timings">{{booking.passengerName}}
+                        </td>
+                        <td>{{booking.passengerAge}}</td>
+                        <!-- add below routerLink="../booking"-->
+                        <button type="button" id="{{indexOfElement}}"
+                            class="book-now btn btn-primary rounded-10 justify-content-center px-4 text-center p-2">Cancel
+                            booking</button>
+                    </tr>
+
+                </table>
+
+            </div>
+            <!-- this is dummy UI of updated UI for viewing bookings-->
+            <div class="row" *ngFor="let booking of [1,2,3]; let indexOfElement=index;">
+                <div class="airlines">Bangalore &nbsp;&nbsp;<div style="font-size:30px;">→</div>
+                    &nbsp;&nbsp;
+                    Hyderabad</div>
+
+                <div class="flight-no">21 Oct 2022</div>
+
+                <br>
+                <p style="padding-top:3%; padding-bottom: 1%; font-size:20px">Passenger(s) Details:</p>
+
+                <div style="display:flex; margin-bottom:1%; margin-left: 2%;" *ngFor="let id of [1,2,3]">
+                    <div>Kritesh Pokhrel
+                        <!-- add below routerLink="../booking"-->
+                    </div>
+                    <div style="padding-left: 5%;">22</div>
+                </div>
+                <div style="display: flex;">
+                    <button type="button" id="1"
+                        class="book-now btn btn-primary rounded-10 justify-content-center px-4 text-center p-2">Cancel
+                        booking</button>
+                    <div (click)="expandModifyDetails()"
+                        style="text-align:center;padding-top:1%; padding-left: 3%;">Modify passengers details</div>
+                </div>
+
+                <div class="pass-details" *ngFor="let number of [].constructor(this.passengers); let i = index;">
+
+                    <form #form="ngForm" *ngIf="expandPsngrDetails">
+                        <div class="row">
+                            <div class="form-group col-sm-4">
+                                <input class="details form-control" [(ngModel)]="passengers[i].name" id="passName"
+                                    name="name" type="text" placeholder="Passenger Name" required="" />
+                            </div>
+                            <div class="form-group col-sm-2">
+                                <input class="details age form-control" id="age" [(ngModel)]="passengers[i].age"
+                                    name="age[{{i}}]" type="number" min="0" placeholder="Age" req />
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input class="form-check-input" type="radio" name="gender[{{i}}]" value=1
+                                    [(ngModel)]="passengers[i].gender"> Male
+
+                                <input class="form-check-input" type="radio" name="gender[{{i}}]" value=2
+                                    [(ngModel)]="passengers[i].gender"> Female
+
+                                <input class="form-check-input" type="radio" name="gender[{{i}}]" value=0
+                                    [(ngModel)]="passengers[i].gender"> Others
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            </div>
+            <!--conncetion to api here
+            <div class = "row"*ngFor = "let number of [1,2,3,4,5]">
+                <table >
+                            <tr>
+                                <table class="nestedtable">
+                                    <tr>
+                                <td  class="airlines">Indigo</td>
+                            </tr>
+                                <tr>
+                                    <td class="flight-no-mul">6E-5753</td>                                    
+                                    <td class="flight-no-mul">,6E-6890</td></tr>
+                        </table>
+                        
+                        <td class="timings">2:50 A.M. ----- 3:00 P.M.</td>
+                        <td>6 Hrs 45 mins</td>
+                        
+                        <td>1 Stop</td>
+                        <td>₹2000</td>
+                        <button type="button" routerLink="../booking" class="book-now btn btn-primary rounded-10 justify-content-center px-4 text-center p-2">Book</button>                                    
+         
+                    </tr>
+                    
+                </table>
+
+            </div>-->
+
+
+        </div>
+
+
+</body>
