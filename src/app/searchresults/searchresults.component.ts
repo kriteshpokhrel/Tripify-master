@@ -19,7 +19,7 @@ export class SearchresultsComponent implements OnInit {
   ) { }
 
   flightQuery: FlightQuery = JSON.parse(this.cookie.get("queryDetails"))
-  flightsAvailable: FlightAvailable[];
+  flightsAvailable: FlightAvailable[]
 
   //show results for non-stop flights 
   showResults() {
@@ -27,7 +27,7 @@ export class SearchresultsComponent implements OnInit {
     this.getFlightsService.getFlights(this.flightQuery).subscribe(
       {
         next: (flightsAvailable) => {
-          this.flightsAvailable = flightsAvailable,
+          this.flightsAvailable = flightsAvailable
           console.log(this.flightsAvailable)
         },
         error: (response) => { console.log(response) }
@@ -46,7 +46,6 @@ export class SearchresultsComponent implements OnInit {
     let flightData: string = JSON.stringify(this.flightsAvailable[elementId]);
     //add current to cookies
     this.cookie.set("selectedFlight", flightData);
-
     this.router.navigate(['../booking']);
   }
 

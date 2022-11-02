@@ -28,12 +28,11 @@ export class BookingComponent implements OnInit {
     console.log(this.flightAvailable);
     this.flightQuery = JSON.parse(this.cookie.get("queryDetails"));
     this.passengers = this.flightQuery.passengerCount;
-    this.passengersDetails = Array.from(Array(this.passengers), () => ({ name: '', age: 0, gender: 0 }))
+    this.passengersDetails = Array.from(Array(this.passengers), () => ({ id:0, name: '', age: 0, gender: 0 }))
     console.log(this.passengersDetails);
 
 
     //get flight id
-
     this.flightId = this.flightAvailable.id;
     //////INSERT USER NAME HERE FROM COOKIES OR ALTS
     this.user = "Adminbro";
@@ -56,7 +55,6 @@ export class BookingComponent implements OnInit {
 
   bookTickets() {
     //create bookings type object here
-
     this.cookie.set("tripId",this.flightId.toString());
     let passengersDetailsArr = JSON.stringify(this.passengersDetails);
     this.cookie.set("passengerDetails", passengersDetailsArr);

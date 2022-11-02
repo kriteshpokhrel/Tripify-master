@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class PaymentComponent implements OnInit {
   userName:string;
   userEmail:string;
+  userContact:string;
   flightAvailable:FlightAvailable;
   
   constructor(private cookie:CookieService,
@@ -29,8 +30,9 @@ export class PaymentComponent implements OnInit {
     }
     else{
       this.cookie.set("userName",this.userName);
-      this.cookie.set("userEmail",this.userEmail);
-      console.log("Fields not empty"+ this.userName+this.userEmail);
+      this.cookie.set("userEmail",this.userEmail);      
+      this.cookie.set("userContact",this.userContact);
+      console.log("Fields not empty"+ this.userName+this.userEmail+ this.userContact);
       this.router.navigate(['bookingConfirmation']);
     }
     }

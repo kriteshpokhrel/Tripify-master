@@ -3,6 +3,7 @@ export interface Booking
 {
     name:string;
     email:string;
-    tripId:number;
+    phoneNo:string;
+    tripIds:number[];
     passengers: Passenger[];
 }

@@ -1,4 +1,5 @@
-import { Passenger } from './../models/passenger.model';
+import { HttpResponse } from '@angular/common/http';
+import { Passenger } from '../models/passenger.model';
 import { Component, OnInit } from '@angular/core';
 import { Booking } from './../models/booking';
 import { GetFlightsService } from './../services/get-flights.service';
@@ -14,7 +15,8 @@ export class BookingconfirmationComponent implements OnInit {
   booking:Booking;
   userName:string;
   userEmail:string;
-  tripId:number;   
+userContact:string;
+  tripId:number[]=[];   
   id:Number;
 
   passengersDetails: Passenger[];
@@ -29,23 +31,28 @@ export class BookingconfirmationComponent implements OnInit {
   performBooking()
   {
     this.userName= this.cookie.get("userName");
-    this.userEmail = this.cookie.get("userEmail");
-    this.tripId = parseInt(this.cookie.get("tripId"));
+    this.userEmail = this.cookie.get("userEmail");    
+    this.userContact = this.cookie.get("userContact");
+    let id = parseInt(this.cookie.get("tripId"))
+    console.log(id.toString()+ " is the flight id.")
+    this.tripId[0]=id;
     this.passengersDetails = JSON.parse(this.cookie.get("passengerDetails"));
     this.booking = {
       name: this.userName,
       email: this.userEmail,
-      tripId: this.tripId,
+      phoneNo: this.userContact,
+      tripIds: this.tripId,
       passengers: this.passengersDetails
     }; 
     console.log(this.booking+" is what we received")
     this.getFlightsService.confirmBooking(this.booking).subscribe(
       {
-        next: (id) => { 
-          this.id = id;
+        next: (response) => { 
+
+          alert("Ticket booked")
         },
         error: (response) => { alert("No seats are available for your selected flight.")
-      //this.router.navigate(['payment']) 
+      this.router.navigate(['payment']) 
     }
       }
     )

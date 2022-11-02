@@ -20,7 +20,7 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     let date = new Date().toISOString().slice(0, 10);
     //!!!!!!!!!!!!!!!!!!!!!! STRICTLY FOR DEBUGGING
-    this.cookie.set("userEmail", "kriteshpokharel@gmail.com");
+    this.cookie.set("userEmail", "kriteshpokharel100@gmail.com");
   }
 
   handleMinus() {

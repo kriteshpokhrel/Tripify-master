@@ -20,12 +20,12 @@ export class GetFlightsService {
    return  this.http.get<FlightAvailable[]>(this.baseApiUrl+'/api/General/GetTrips/'+flightQuery.sourceId+"/"+flightQuery.destinationId+"/"+flightQuery.sourceTime+"/"+flightQuery.passengerCount);
   }
 
-  confirmBooking(booking:Booking):Observable<number>
+  confirmBooking(booking:Booking):Observable<Response>
   {
     console.log(booking);
-    return this.http.post<number>(this.baseApiUrl+'/api/SeatBooking/BookSeats',booking);
+    return this.http.post<Response>(this.baseApiUrl+'/api/SeatBooking/BookSeats',booking);
   }
-
+  
   getMyBooking(email:string):Observable<BookingView[]>
   {
     console.log(email+" bookings are being displayed");
@@ -33,4 +33,11 @@ export class GetFlightsService {
   }
 
 
+  cancelBooking(index:number): Observable<Response>
+{
+  
+  console.log("booking no." +index+" is getting deleted");
+  return this.http.delete<Response>(this.baseApiUrl+'/api/SeatBooking/CancelBookings/'+index);
+
+}
 }
